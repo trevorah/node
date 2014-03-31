@@ -395,9 +395,10 @@ index corresponds to a fd in the child.  The value is one of the following:
 
 1. `'pipe'` - Create a pipe between the child process and the parent process.
    The parent end of the pipe is exposed to the parent as a property on the
-   `child_process` object as `ChildProcess.stdio[fd]`. Pipes created for
-   fds 0 - 2 are also available as ChildProcess.stdin, ChildProcess.stdout
-   and ChildProcess.stderr, respectively.
+   `child_process` object as `ChildProcess.stdio[fd]`. Pipes created for fd 0
+   will be a `Writable Stream` whereas fds > 0 will be a `Readable Stream`.
+   Pipes created for fds 0 - 2 are also available as ChildProcess.stdin,
+   ChildProcess.stdout and ChildProcess.stderr, respectively.
 2. `'ipc'` - Create an IPC channel for passing messages/file descriptors
    between parent and child. A ChildProcess may have at most *one* IPC stdio
    file descriptor. Setting this option enables the ChildProcess.send() method.
